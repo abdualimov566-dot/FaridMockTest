@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FARID MOCK TEST</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:white;font-family:Arial}
+header{padding:18px;background:#1b1b1b;border-bottom:1px solid #b99745}
+h2{color:#d9b65b;margin:0}
+main{display:grid;grid-template-columns:1fr 300px;gap:20px;padding:20px}
+.panel{background:#1b1b1b;padding:20px;border-radius:12px}
+.question{font-size:20px;margin:25px 0}
+.option{display:block;width:100%;text-align:left;padding:14px;margin:10px 0;background:#292929;color:white;border:1px solid #555;border-radius:8px;cursor:pointer}
+.option.selected{background:#806522;border-color:#e5c36b}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:15px}
+.num{padding:12px 5px;background:#292929;color:white;border:1px solid #555;border-radius:7px;cursor:pointer}
+.num.done{background:#806522}
+button:hover{opacity:.85}
+.nav{display:flex;justify-content:space-between;margin-top:25px;gap:10px}
+.nav button{padding:12px;background:#b99745;border:0;border-radius:7px;cursor:pointer}
+@media(max-width:700px){main{grid-template-columns:1fr}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+<h2>⭐ FARID MOCK TEST</h2>
+<p>MATEMATIKA | MOCK EXAM</p>
+</header>
+<main>
+<section class="panel">
+<div id="counter">1 / 20</div>
+<div class="question" id="question">Savol yuklanmoqda...</div>
+<div id="options"></div>
+<div class="nav">
+<button onclick="move(-1)">← Oldingi</button>
+<button onclick="move(1)">Keyingi →</button>
+</div>
+</section>
+<aside class="panel">
+<h3>📝 JAVOBLAR VARAQASI</h3>
+<div class="grid" id="answerGrid"></div>
+<p id="progress">Javoblar: 0 / 20</p>
+<button onclick="finish()" style="width:100%;padding:13px;background:#b99745;border:0;border-radius:8px;cursor:pointer">TESTNI YAKUNLASH</button>
+</aside>
+</main>
+<script>
+const questions=Array.from({length:20},(_,i)=>({
+text:`${i+1}-savol. Bu yerga matematika savoli joylashtiriladi.`,
+options:["A","B","C","D"]
+}));
+let current=0;
+let answers={};
+function render(){
+document.getElementById("counter").textContent=(current+1)+" / 20";
+document.getElementById("question").textContent=questions[current].text;
+document.getElementById("options").innerHTML=questions[current].options.map(x=>
+`<button class="option ${answers[current]===x?'selected':''}" onclick="choose('${x}')">${x}</button>`).join("");
+document.getElementById("answerGrid").innerHTML=questions.map((q,i)=>
+`<button class="num ${answers[i]?'done':''}" onclick="go(${i})">${i+1}${answers[i]?' ✓':''}</button>`).join("");
+document.getElementById("progress").textContent="Javoblar: "+Object.keys(answers).length+" / 20";
+}
+function choose(x){answers[current]=x;render()}
+function go(i){current=i;render()}
+function move(d){current=Math.max(0,Math.min(19,current+d));render()}
+function finish(){
+if(!confirm("Testni yakunlaysizmi?"))return;
+alert("Test yakunlandi! Belgilangan javoblar: "+Object.keys(answers).length+"/20");
+}
+render();
+</script>
+</body>
+</html>
