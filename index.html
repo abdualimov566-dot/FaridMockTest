@@ -5,30 +5,116 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FARID MOCK TEST</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101010;color:white;font-family:Arial}
-header{padding:20px;background:#1b1b1b;border-bottom:2px solid #b99745}
+
+body{
+margin:0;
+background:#101010;
+color:white;
+font-family:Arial;
+}
+
+header{
+padding:20px;
+background:#1b1b1b;
+border-bottom:2px solid #b99745;
+}
+
 h2{color:#d9b65b;margin:0}
 header p{color:#bbb}
-.container{max-width:1100px;margin:30px auto;padding:15px}
-.panel{background:#1b1b1b;padding:22px;border-radius:12px;margin-bottom:20px}
-input{width:100%;padding:14px;margin:12px 0;background:#292929;color:white;border:1px solid #b99745;border-radius:8px;font-size:16px}
-button{cursor:pointer;border:0;border-radius:8px;padding:13px;background:#b99745;color:#111;font-weight:bold}
+
+.container{
+max-width:1100px;
+margin:30px auto;
+padding:15px;
+}
+
+.panel{
+background:#1b1b1b;
+padding:22px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:12px 0;
+background:#292929;
+color:white;
+border:1px solid #b99745;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+cursor:pointer;
+border:0;
+border-radius:8px;
+padding:13px;
+background:#b99745;
+color:#111;
+font-weight:bold;
+}
+
 button:hover{opacity:.85}
 .hidden{display:none}
-.question{font-size:20px;margin:25px 0}
-.option{display:block;width:100%;text-align:left;margin:10px 0;background:#292929;color:white;border:1px solid #555}
-.option.selected{background:#806522;border-color:#e5c36b;color:white}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:15px}
-.num{background:#292929;color:white;border:1px solid #555}
+
+.question{
+font-size:20px;
+margin:25px 0;
+}
+
+.option{
+display:block;
+width:100%;
+text-align:left;
+margin:10px 0;
+background:#292929;
+color:white;
+border:1px solid #555;
+}
+
+.option.selected{
+background:#806522;
+border-color:#e5c36b;
+color:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:8px;
+margin-top:15px;
+}
+
+.num{
+background:#292929;
+color:white;
+border:1px solid #555;
+}
+
 .num.done{background:#806522}
-.nav{display:flex;justify-content:space-between;gap:10px;margin-top:25px}
+
+.nav{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-top:25px;
+}
+
 .nav button{flex:1}
 .gold{color:#d9b65b}
-@media(max-width:700px){.container{padding:10px}.panel{padding:15px}}
+
+@media(max-width:700px){
+.container{padding:10px}
+.panel{padding:15px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -37,58 +123,100 @@ button:hover{opacity:.85}
 </header>
 
 <div class="container">
-<section class="panel" id="pdfSection">
-    <h2>📄 FARID OFFICIAL — MATEMATIKA TEST</h2>
-    <p>Test savollarini PDF shaklida ko‘rish:</p>
 
-    <iframe
-        src="FARID%20OFFICIAL.pdf"
-        width="100%"
-        height="700px"
-        style="border:2px solid #b99745;border-radius:10px;">
-    </iframe>
-</section>
-
+<!-- KOD KIRITISH -->
 <section class="panel" id="login">
 <h2>♛ TESTGA KIRISH</h2>
-<p>Testni boshlash uchun maxsus kodni kiriting.</p>
-<input id="accessCode" type="password" placeholder="Kirish kodini kiriting">
-<button onclick="checkCode()" style="width:100%">TESTNI BOSHLASH →</button>
+<p>Testga kirish uchun maxsus kodni kiriting.</p>
+
+<input
+id="accessCode"
+type="password"
+placeholder="Kirish kodini kiriting">
+
+<button onclick="checkCode()" style="width:100%">
+TESTGA KIRISH →
+</button>
+
 <p id="error" style="color:#ff7777"></p>
 </section>
 
+<!-- PDF BO'LIMI -->
+<section class="panel hidden" id="pdfSection">
+
+<h2>📄 FARID OFFICIAL — MATEMATIKA TEST</h2>
+<p>Test savollarini PDF shaklida ko‘ring:</p>
+
+<iframe
+src="FARID%20OFFICIAL.pdf"
+width="100%"
+height="700px"
+style="border:2px solid #b99745;border-radius:10px;">
+</iframe>
+
+<button
+onclick="startExam()"
+style="width:100%;margin-top:15px;">
+🚀 TESTNI BOSHLASH
+</button>
+
+</section>
+
+<!-- TEST BO'LIMI -->
 <section id="exam" class="hidden">
+
 <div class="panel">
+
 <div class="gold">FARID MOCK TEST</div>
+
 <p id="counter">1 / 45</p>
-<div id="timer" style="display:block!important;color:#e5c36b;font-size:32px;font-weight:bold;text-align:center;padding:15px;background:#292929;border:2px solid #b99745;border-radius:10px;margin:15px 0;">
-⏱ 02:30:00
+
+<div id="timer"
+style="color:#e5c36b;font-size:32px;font-weight:bold;text-align:center;padding:15px;background:#292929;border:2px solid #b99745;border-radius:10px;margin:15px 0;">
+02:30:00
 </div>
+
 <div class="question" id="question"></div>
 <div id="options"></div>
+
 <div class="nav">
 <button onclick="move(-1)">← Oldingi</button>
 <button onclick="move(1)">Keyingi →</button>
 </div>
+
 </div>
 
 <div class="panel">
+
 <h3>📝 JAVOBLAR VARAQASI</h3>
+
 <div class="grid" id="answerGrid"></div>
+
 <p id="progress">Javoblar: 0 / 45</p>
-<button onclick="finish()" style="width:100%">🏁 TESTNI YAKUNLASH</button>
+
+<button onclick="finish()" style="width:100%">
+🏁 TESTNI YAKUNLASH
+</button>
+
 </div>
 </section>
 
+<!-- NATIJA -->
 <section id="result" class="panel hidden">
+
 <h2>🏆 TEST YAKUNLANDI!</h2>
 <p id="resultText"></p>
-<button onclick="location.reload()">QAYTA BOSHLASH</button>
+
+<button onclick="location.reload()">
+QAYTA BOSHLASH
+</button>
+
 </section>
 
 </div>
 
 <script>
+
 const ACCESS_CODE = "FARID2026";
 
 const questions = Array.from({length:45},(_,i)=>({
@@ -96,14 +224,55 @@ text:`${i+1}-savol. Bu yerga matematika savoli joylashtiriladi.`,
 options:["A","B","C","D"]
 }));
 
-let current=0;
+let current = 0;
+let answers = {};
 let timerInterval;
 let timeLeft = 150 * 60;
+let timerStarted = false;
 
+// KODNI TEKSHIRISH
+function checkCode(){
+
+const code = document.getElementById("accessCode").value.trim();
+
+if(code === ACCESS_CODE){
+
+document.getElementById("login").classList.add("hidden");
+
+document.getElementById("pdfSection").classList.remove("hidden");
+
+}else{
+
+document.getElementById("error").textContent =
+"❌ Kod noto‘g‘ri. Qayta urinib ko‘ring.";
+
+}
+
+}
+
+// TESTNI BOSHLASH
+function startExam(){
+
+document.getElementById("pdfSection").classList.add("hidden");
+
+document.getElementById("exam").classList.remove("hidden");
+
+render();
+
+if(!timerStarted){
+startTimer();
+timerStarted = true;
+}
+
+}
+
+// VAQT
 function startTimer(){
+
 const timer = document.getElementById("timer");
 
 timerInterval = setInterval(()=>{
+
 timeLeft--;
 
 const hours = Math.floor(timeLeft / 3600);
@@ -116,70 +285,90 @@ String(minutes).padStart(2,"0")+":"+
 String(seconds).padStart(2,"0");
 
 if(timeLeft <= 0){
+
 clearInterval(timerInterval);
 finish(true);
+
 }
+
 },1000);
-}
-let answers={};
 
-function checkCode(){
-const code=document.getElementById("accessCode").value.trim();
-if(code===ACCESS_CODE){
-document.getElementById("login").classList.add("hidden");
-document.getElementById("exam").classList.remove("hidden");
-render();
-startTimer();
-}else{
-document.getElementById("error").textContent="❌ Kod noto‘g‘ri. Qayta urinib ko‘ring.";
-}
 }
 
+// SAVOLLARNI CHIQARISH
 function render(){
-document.getElementById("counter").textContent=(current+1)+" / "+questions.length;
-document.getElementById("question").textContent=questions[current].text;
 
-document.getElementById("options").innerHTML=
+document.getElementById("counter").textContent =
+(current+1)+" / "+questions.length;
+
+document.getElementById("question").textContent =
+questions[current].text;
+
+document.getElementById("options").innerHTML =
 questions[current].options.map(x=>
 `<button class="option ${answers[current]===x?'selected':''}" onclick="choose('${x}')">${x}</button>`
 ).join("");
 
-document.getElementById("answerGrid").innerHTML=
+document.getElementById("answerGrid").innerHTML =
 questions.map((q,i)=>
 `<button class="num ${answers[i]?'done':''}" onclick="go(${i})">${i+1}${answers[i]?' ✓':''}</button>`
 ).join("");
 
-document.getElementById("progress").textContent=
+document.getElementById("progress").textContent =
 "Javoblar: "+Object.keys(answers).length+" / "+questions.length;
+
 }
 
+// JAVOB TANLASH
 function choose(x){
-answers[current]=x;
+
+answers[current] = x;
 render();
+
 }
 
+// SAVOLGA O'TISH
 function go(i){
-current=i;
+
+current = i;
 render();
+
 }
 
+// OLDINGI VA KEYINGI
 function move(d){
-current=Math.max(0,Math.min(questions.length-1,current+d));
+
+current = Math.max(
+0,
+Math.min(questions.length-1,current+d)
+);
+
 render();
+
 }
 
+// TESTNI YAKUNLASH
 function finish(auto=false){
+
+if(!auto && !confirm("Testni yakunlaysizmi?")){
+return;
+}
+
 clearInterval(timerInterval);
-if(!auto && !confirm("Testni yakunlaysizmi?"))return;
 
 document.getElementById("exam").classList.add("hidden");
+
 document.getElementById("result").classList.remove("hidden");
 
-document.getElementById("resultText").textContent=
+document.getElementById("resultText").textContent =
 "Javob belgilangan savollar: "+
-Object.keys(answers).length+" / "+questions.length+
+Object.keys(answers).length+
+" / "+questions.length+
 ". Test yakunlandi.";
+
 }
+
 </script>
+
 </body>
 </html>
