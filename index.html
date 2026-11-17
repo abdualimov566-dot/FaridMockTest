@@ -57,6 +57,9 @@ padding:13px;
 background:#b99745;
 color:#111;
 font-weight:bold;
+letter-spacing:0 !important;
+word-spacing:0 !important;
+white-space:nowrap;
 }
 
 button:hover{opacity:.85}
@@ -124,7 +127,6 @@ margin-top:25px;
 
 <div class="container">
 
-<!-- KOD KIRITISH -->
 <section class="panel" id="login">
 <h2>♛ TESTGA KIRISH</h2>
 <p>Testga kirish uchun maxsus kodni kiriting.</p>
@@ -141,7 +143,6 @@ TESTGA KIRISH →
 <p id="error" style="color:#ff7777"></p>
 </section>
 
-<!-- PDF BO'LIMI -->
 <section class="panel hidden" id="pdfSection">
 
 <h2>📄 FARID OFFICIAL — MATEMATIKA TEST</h2>
@@ -162,7 +163,6 @@ style="width:100%;margin-top:15px;">
 
 </section>
 
-<!-- TEST BO'LIMI -->
 <section id="exam" class="hidden">
 
 <div class="panel">
@@ -201,7 +201,6 @@ style="color:#e5c36b;font-size:32px;font-weight:bold;text-align:center;padding:1
 </div>
 </section>
 
-<!-- NATIJA -->
 <section id="result" class="panel hidden">
 
 <h2>🏆 TEST YAKUNLANDI!</h2>
@@ -230,7 +229,6 @@ let timerInterval;
 let timeLeft = 150 * 60;
 let timerStarted = false;
 
-// KODNI TEKSHIRISH
 function checkCode(){
 
 const code = document.getElementById("accessCode").value.trim();
@@ -238,7 +236,6 @@ const code = document.getElementById("accessCode").value.trim();
 if(code === ACCESS_CODE){
 
 document.getElementById("login").classList.add("hidden");
-
 document.getElementById("pdfSection").classList.remove("hidden");
 
 }else{
@@ -250,11 +247,9 @@ document.getElementById("error").textContent =
 
 }
 
-// TESTNI BOSHLASH
 function startExam(){
 
 document.getElementById("pdfSection").classList.add("hidden");
-
 document.getElementById("exam").classList.remove("hidden");
 
 render();
@@ -266,7 +261,6 @@ timerStarted = true;
 
 }
 
-// VAQT
 function startTimer(){
 
 const timer = document.getElementById("timer");
@@ -295,7 +289,6 @@ finish(true);
 
 }
 
-// SAVOLLARNI CHIQARISH
 function render(){
 
 document.getElementById("counter").textContent =
@@ -319,7 +312,6 @@ document.getElementById("progress").textContent =
 
 }
 
-// JAVOB TANLASH
 function choose(x){
 
 answers[current] = x;
@@ -327,7 +319,6 @@ render();
 
 }
 
-// SAVOLGA O'TISH
 function go(i){
 
 current = i;
@@ -335,7 +326,6 @@ render();
 
 }
 
-// OLDINGI VA KEYINGI
 function move(d){
 
 current = Math.max(
@@ -347,7 +337,6 @@ render();
 
 }
 
-// TESTNI YAKUNLASH
 function finish(auto=false){
 
 if(!auto && !confirm("Testni yakunlaysizmi?")){
@@ -357,7 +346,6 @@ return;
 clearInterval(timerInterval);
 
 document.getElementById("exam").classList.add("hidden");
-
 document.getElementById("result").classList.remove("hidden");
 
 document.getElementById("resultText").textContent =
