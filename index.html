@@ -177,8 +177,8 @@ style="color:#e5c36b;font-size:32px;font-weight:bold;text-align:center;padding:1
 </div>
 
 <div class="question" id="question"></div>
+<img id="questionImage" style="display:none; max-width:100%; margin:15px auto;">
 <div id="options"></div>
-
 <div class="nav">
 <button onclick="move(-1)">← Oldingi</button>
 <button onclick="move(1)">Keyingi →</button>
@@ -215,12 +215,25 @@ QAYTA BOSHLASH
 </div>
 
 <script>
-
+  
 const ACCESS_CODE = "FARID2026";
-
+  
 const questions = Array.from({length:45},(_,i)=>({
-text:`${i+1}-savol. Bu yerga matematika savoli joylashtiriladi.`,
-options:["A","B","C","D"]
+    text:`${i+1}-savol.`,
+    image: ({
+        23: "Без имени.png",
+        31: "savol_2.png",
+        33: "savol_3.png",
+        34: "savol_3.png",
+        35: "savol_3.png",
+        38: "savol_4.png",
+        40: "savol_5.png",
+        41: "savol_6.png",
+        42: "savol_7.png",
+        43: "savol_8.png",
+        45: "savol_9.png"
+    })[i+1],
+    options:["A","B","C","D"]
 }));
 
 let current = 0;
@@ -296,6 +309,14 @@ document.getElementById("counter").textContent =
 
 document.getElementById("question").textContent =
 questions[current].text;
+const img = document.getElementById("questionImage");
+
+if(questions[current].image){
+    img.src = "images/" + questions[current].image;
+    img.style.display = "block";
+}else{
+    img.style.display = "none";
+}
 
 document.getElementById("options").innerHTML =
 questions[current].options.map(x=>
