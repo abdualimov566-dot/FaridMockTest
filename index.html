@@ -312,7 +312,7 @@ questions[current].text;
 const img = document.getElementById("questionImage");
 
 if(questions[current].image){
-    img.src = "images/" + questions[current].image;
+    img.src = "./images/" + encodeURIComponent(questions[current].image);
     img.style.display = "block";
 }else{
     img.style.display = "none";
