@@ -218,6 +218,28 @@ QAYTA BOSHLASH
   
 const ACCESS_CODE = "FARID2026";
   
+
+const answerKey = [
+"B","A","A","A","B","D","A",
+"B","A","B","C","B","B","C",
+"A","A","C","A","A","C","D",
+"A","B","A","D","D","C","B",
+"C","A","B","B","A","B","C"
+];
+
+const writtenKey = [
+["6","13.5"],
+["π/6","3"],
+["-1","4.5"],
+["16","1"],
+["14","100/3"],
+["3√6/4","√6/2"],
+["12","25"],
+["7/25","7/4"],
+["3√2","54π"],
+["6","10%"]
+];
+
 const questions = Array.from({length:45},(_,i)=>({
     text:`${i+1}-savol.`,
     image: ({
@@ -233,7 +255,10 @@ const questions = Array.from({length:45},(_,i)=>({
         43: "savol_8.png",
         45: "savol_9.png"
     })[i+1],
-    options:["A","B","C","D"]
+    options: i < 35 ? ["A","B","C","D"] : [],
+    correct: i < 35 ? answerKey[i] : null,
+    correctA: i >= 35 ? writtenKey[i-35][0] : null,
+    correctB: i >= 35 ? writtenKey[i-35][1] : null
 }));
 
 let current = 0;
@@ -302,6 +327,7 @@ finish(true);
 
 }
 
+
 function render(){
 
 document.getElementById("counter").textContent =
@@ -309,6 +335,7 @@ document.getElementById("counter").textContent =
 
 document.getElementById("question").textContent =
 questions[current].text;
+
 const img = document.getElementById("questionImage");
 
 if(questions[current].image){
@@ -318,20 +345,56 @@ if(questions[current].image){
     img.style.display = "none";
 }
 
+const q = questions[current];
+
+if(current < 35){
+
 document.getElementById("options").innerHTML =
-questions[current].options.map(x=>
-`<button class="option ${answers[current]===x?'selected':''}" onclick="choose('${x}')">${x}</button>`
+q.options.map(x=>
+`<button class="option ${answers[current]===x?'selected':''}"
+onclick="choose('${x}')">${x}</button>`
 ).join("");
+
+}else{
+
+document.getElementById("options").innerHTML = `
+<p>A javob:</p>
+<input value="${answers[current]?.A || ''}"
+oninput="writeAnswer('A',this.value)"
+placeholder="A javobni kiriting">
+
+<p>B javob:</p>
+<input value="${answers[current]?.B || ''}"
+oninput="writeAnswer('B',this.value)"
+placeholder="B javobni kiriting">
+`;
+
+}
 
 document.getElementById("answerGrid").innerHTML =
 questions.map((q,i)=>
-`<button class="num ${answers[i]?'done':''}" onclick="go(${i})">${i+1}${answers[i]?' ✓':''}</button>`
+`<button class="num ${answers[i]?'done':''}"
+onclick="go(${i})">${i+1}${answers[i]?' ✓':''}</button>`
 ).join("");
 
 document.getElementById("progress").textContent =
-"Javoblar: "+Object.keys(answers).length+" / "+questions.length;
+"Javob belgilangan savollar: "+
+Object.keys(answers).length+" / "+questions.length;
 
 }
+
+function writeAnswer(part,value){
+
+if(!answers[current]) answers[current] = {};
+
+answers[current][part] = value;
+
+document.getElementById("progress").textContent =
+"Javob belgilangan savollar: "+
+Object.keys(answers).length+" / "+questions.length;
+
+}
+
 
 function choose(x){
 
@@ -358,6 +421,16 @@ render();
 
 }
 
+
+function normalizeAnswer(value){
+return String(value || "")
+.toLowerCase()
+.replace(/,/g,".")
+.replace(/\s+/g,"")
+.replace(/−/g,"-")
+.replace(/π/g,"pi");
+}
+
 function finish(auto=false){
 
 if(!auto && !confirm("Testni yakunlaysizmi?")){
@@ -366,13 +439,51 @@ return;
 
 clearInterval(timerInterval);
 
+let correct = 0;
+let attempted = 0;
+let maxScore = 55;
+
+for(let i=0;i<35;i++){
+
+if(answers[i]){
+attempted++;
+if(answers[i] === questions[i].correct){
+correct++;
+}
+}
+
+}
+
+for(let i=35;i<45;i++){
+
+const user = answers[i] || {};
+
+if(user.A && user.A.trim() !== ""){
+attempted++;
+if(normalizeAnswer(user.A) === normalizeAnswer(questions[i].correctA)){
+correct++;
+}
+}
+
+if(user.B && user.B.trim() !== ""){
+attempted++;
+if(normalizeAnswer(user.B) === normalizeAnswer(questions[i].correctB)){
+correct++;
+}
+}
+
+}
+
+const percent = (correct / maxScore * 100).toFixed(1);
+
 document.getElementById("exam").classList.add("hidden");
 document.getElementById("result").classList.remove("hidden");
 
 document.getElementById("resultText").textContent =
-"Javob belgilangan savollar: "+
-Object.keys(answers).length+
-" / "+questions.length+
+"To‘g‘ri javoblar: " + correct +
+" / " + maxScore +
+". Foiz: " + percent + "%" +
+". Kiritilgan javoblar: " + attempted +
 ". Test yakunlandi.";
 
 }
