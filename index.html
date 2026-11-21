@@ -101,9 +101,8 @@ const answerKey = [
   "B","A","A","A","B","D","A","B","A","B",
   "C","B","B","C","A","A","C","A","A","C",
   "D","A","B","A","D","D","C","B","C","A",
-  "B","B","A","B","C"
+  "B","B","G","B","C"
 ];
-
 // 36–45-savollar uchun (A va B bandlari).
 const writtenKey = [
   ["6","13.5"],
@@ -278,6 +277,336 @@ questions[10] = {
   ],
   image: null
 };
+// 13-SAVOL
+questions[12] = {
+  text: String.raw`<strong>Soddalashtiring:</strong><br><br>
+  \[
+  \frac{2\cos\alpha+\cos3\alpha+\cos5\alpha}
+  {\cos3\alpha+\sin\alpha\cdot\sin2\alpha}
+  \]`,
+  options: [
+    String.raw`\(\cos2\alpha\)`,
+    String.raw`\(4\cos2\alpha\)`,
+    String.raw`\(4\sin2\alpha\)`,
+    String.raw`\(\cos\alpha\)`
+  ],
+  image: null
+};
+// 14-SAVOL
+questions[13] = {
+  text: String.raw`
+    \[
+    3\cdot4^x+2\cdot25^x=5\cdot10^x
+    \]
+    tenglama nechta haqiqiy ildizga ega?`,
+  options: [
+    "Haqiqiy ildizga ega emas",
+    "1 ta",
+    "2 ta",
+    "Cheksiz ko‘p yechimga ega"
+  ],
+  image: null
+};
+// 15-SAVOL
+questions[14] = {
+  text: String.raw`<strong>Toq funksiyani toping.</strong>`,
+  options: [
+    String.raw`\(\displaystyle f(x)=\frac{\sin x+x^3}{\cos x-1}\)`,
+    String.raw`\(\displaystyle f(x)=\frac{\cos x+x^3}{\sin x-1}\)`,
+    String.raw`\(\displaystyle f(x)=\frac{\operatorname{tg}x+x^3}{\sin x-1}\)`,
+    String.raw`\(\displaystyle f(x)=\frac{\operatorname{ctg}x+x^2}{\cos x-1}\)`
+  ],
+  image: null
+};
+// 16-SAVOL
+questions[15] = {
+  text: String.raw`
+    \[
+    x^2+4x+1=2\sqrt{x^2+4x+4}
+    \]
+    tenglamaning haqiqiy ildizlari yig‘indisini toping.`,
+  options: [
+    String.raw`\(-4\)`,
+    String.raw`\(4\)`,
+    String.raw`\(-2\)`,
+    String.raw`\(-6\)`
+  ],
+  image: null
+};
+// 17-SAVOL
+questions[16] = {
+  text: String.raw`
+    \[
+    \big||2x-1|-7\big|\leq 5
+    \]
+    tengsizlikni qanoatlantiruvchi butun yechimlar nechta?`,
+  options: [
+    "20 ta",
+    "12 ta",
+    "10 ta",
+    "8 ta"
+  ],
+  image: null
+};
+// 18-SAVOL
+questions[17] = {
+  text: String.raw`<strong>Tengsizlikni yeching:</strong><br><br>
+  \[
+  \sqrt{4-x^2}\geq 0
+  \]`,
+  options: [
+    String.raw`\([-2; 2]\)`,
+    String.raw`\((-1; 2]\)`,
+    String.raw`\((-1; \infty)\)`,
+    String.raw`\(\{-2\}\cup(-1; 2]\)`
+  ],
+  image: null
+};
+// 19-SAVOL
+questions[18] = {
+  text: String.raw`
+    \[
+    3^{23}\cdot 8^{12}\cdot 125^{17}
+    \]
+    necha xonali son?`,
+  options: [
+    "52",
+    "51",
+    "50",
+    "17"
+  ],
+  image: null
+};
+// 20-SAVOL
+questions[19] = {
+  text: String.raw`<strong>Tengsizlikni yeching:</strong><br><br>
+  \[
+  \log_{\cos 2x}(\sin 2x)\leq 1
+  \]`,
+  options: [
+    String.raw`\(\left[\frac{\pi}{8}+\pi k;\frac{\pi}{4}+\pi k\right],\ k\in\mathbb Z\)`,
+    String.raw`\(\left[\frac{\pi}{8}+\pi k;\frac{5\pi}{8}+\pi k\right],\ k\in\mathbb Z\)`,
+    String.raw`\(\left[\frac{\pi}{8}+\pi k;\frac{\pi}{4}+\pi k\right),\ k\in\mathbb Z\)`,
+    String.raw`\(\left[\frac{\pi}{4}+2\pi k;\frac{5\pi}{4}+2\pi k\right),\ k\in\mathbb Z\)`
+  ],
+  image: null
+};
+// 21-SAVOL
+questions[20] = {
+  text: String.raw`
+    \[
+    f(g^{-1}(g(x))+1)=x^2+5x+6
+    \]
+    \(g^{-1}(x)\) — \(g(x)\) funksiyaning teskari funksiyasi.
+    <br><br>
+    \(f(-1)\) ni toping.`,
+  options: [
+    String.raw`\(-1\)`,
+    "2",
+    "1",
+    "0"
+  ],
+  image: null
+};
+// 22-SAVOL
+questions[21] = {
+  text: String.raw`
+    \[
+    f(x)=\sin^2 5x-|\cos 2x+x|
+    \]
+    funksiya berilgan.
+    <br><br>
+    \[
+    f'\left(-\frac{\pi}{6}\right)
+    \]
+    ni toping.`,
+  options: [
+    String.raw`\(\frac{7\sqrt{3}+2}{2}\)`,
+    String.raw`\(-\sqrt{3}+1\)`,
+    String.raw`\(\frac{3\sqrt{3}+4}{2}\)`,
+    String.raw`\(\frac{3\sqrt{3}-2}{2}\)`
+  ],
+  image: null
+};
+// 24-SAVOL
+questions[23] = {
+  text: String.raw`
+    Tekislikka ikkita \(AB\) va \(BC\) og‘ma va
+    \(BH\) perpendikulyar tushirilgan. Bunda
+    \[
+    BH=HC,\quad AB=2HC,\quad \angle AHC=90^\circ
+    \]
+    bo‘lsa, \(\cos\angle BAC\) ni toping.`,
+  options: [
+    String.raw`\(\frac34\)`,
+    String.raw`\(\frac35\)`,
+    String.raw`\(\frac13\)`,
+    String.raw`\(\frac12\)`
+  ],
+  image: null
+};
+// 25-SAVOL
+questions[24] = {
+  text: String.raw`
+    Tomoni 4 ga teng bo‘lgan kvadratga doira ichki chizilgan.
+    Doiraning yuzini toping.`,
+  options: [
+    String.raw`\(16\pi\)`,
+    String.raw`\(\pi\)`,
+    String.raw`\(2\pi\)`,
+    String.raw`\(4\pi\)`
+  ],
+  image: null
+};
+// 26-SAVOL
+questions[25] = {
+  text: String.raw`
+    \(ABC\) uchburchakda \(\angle BAC=90^\circ\) va
+    \(\angle BCA=30^\circ\) bo‘lib, \(BD\) bissektrisa
+    \(2\sqrt2\) ga teng bo‘lsa, \(ABC\) uchburchak yuzini toping.`,
+  options: [
+    String.raw`\(2\sqrt3\)`,
+    String.raw`\(2\sqrt2\)`,
+    String.raw`\(3\sqrt2\)`,
+    String.raw`\(3\sqrt3\)`
+  ],
+  image: null
+};
+
+// 27-SAVOL
+questions[26] = {
+  text: String.raw`
+    Diagonallari soni tomonlar sonidan 6 marta ko‘p bo‘lgan
+    ko‘pburchakning ichki burchaklar yig‘indisini toping.`,
+  options: [
+    String.raw`\(2700^\circ\)`,
+    String.raw`\(1800^\circ\)`,
+    String.raw`\(2340^\circ\)`,
+    String.raw`\(2400^\circ\)`
+  ],
+  image: null
+};
+// 28-SAVOL
+questions[27] = {
+  text: String.raw`
+    Rombning katta diagonali \(10\sqrt4+2\sqrt2\) ga,
+    o‘tkir burchagi \(45^\circ\) bo‘lsa,
+    diagonallari kesishish nuqtasidan tomonlarigacha
+    bo‘lgan eng qisqa masofalar yig‘indisini toping.`,
+  options: [
+    "10",
+    "20",
+    "15",
+    "25"
+  ],
+  image: null
+};
+// 29-SAVOL
+questions[28] = {
+  text: String.raw`<strong>Hisoblang:</strong><br><br>
+    \[
+    \int_{-3}^{4}2x^2|2x|\,dx
+    \]`,
+  options: [
+    "187",
+    "175",
+    "337",
+    "222"
+  ],
+  image: null
+};
+// 30-SAVOL
+questions[29] = {
+  text: String.raw`
+    \(ABC\) uchburchakning yuzi 60 ga teng.
+    \[
+    \overrightarrow{BE}=\overrightarrow{AB}
+    \]
+    bo‘lsa, \(AEC\) uchburchakning yuzini toping.`,
+  options: [
+    "120",
+    "90",
+    "60",
+    "30"
+  ],
+  image: null
+};
+// 32-SAVOL
+questions[31] = {
+  text: String.raw`
+    Merganning nishonga tegish ehtimoli 0,8 ga teng.
+    5 marta o‘q uzilgan. Dastlab otilgan 3 ta o‘q tegib,
+    keyingi 2 ta otilgan o‘q tegmaslik ehtimolini toping.`,
+  options: [
+    String.raw`\(2^{10}\cdot10^{-6}\)`,
+    String.raw`\(2^{11}\cdot10^{-5}\)`,
+    String.raw`\(2^{11}\cdot10^{-6}\)`,
+    String.raw`\(2^{10}\cdot10^{-5}\)`
+  ],
+  image: null
+};
+
+// 33-SAVOL
+questions[32] = {
+  text: String.raw`
+    <strong>33–35-topshiriqlar uchun umumiy shart:</strong><br>
+    Muntazam oltiburchakli piramidaga shar ichki chizilgan.
+    Shar ichiga eng katta hajmli konus ichki chizilgan.
+    Piramida asosining tomoni 6 ga, yon qirrasi asos tekisligi
+    bilan 60° burchak tashkil etadi. (\(\pi \approx 3\)).<br><br>
+    <strong>33. Piramida hajmini toping.</strong>`,
+  options: [
+    String.raw`\(162\sqrt{3}\)`,
+    "108",
+    "32",
+    "81",
+    String.raw`\(81\sqrt{3}\)`,
+    "27"
+  ],
+  image: null
+};
+
+// 34-SAVOL
+questions[33] = {
+  text: String.raw`
+    <strong>Umumiy shart:</strong><br>
+    Muntazam oltiburchakli piramidaga shar ichki chizilgan.
+    Shar ichiga eng katta hajmli konus ichki chizilgan.
+    Piramida asosining tomoni 6 ga, yon qirrasi asos tekisligi
+    bilan 60° burchak tashkil etadi. (\(\pi \approx 3\)).<br><br>
+    <strong>34. Shar hajmini toping.</strong>`,
+  options: [
+    String.raw`\(162\sqrt{3}\)`,
+    "108",
+    "32",
+    "81",
+    String.raw`\(81\sqrt{3}\)`,
+    "27"
+  ],
+  image: null
+};
+
+// 35-SAVOL
+questions[34] = {
+  text: String.raw`
+    <strong>Umumiy shart:</strong><br>
+    Muntazam oltiburchakli piramidaga shar ichki chizilgan.
+    Shar ichiga eng katta hajmli konus ichki chizilgan.
+    Piramida asosining tomoni 6 ga, yon qirrasi asos tekisligi
+    bilan 60° burchak tashkil etadi. (\(\pi \approx 3\)).<br><br>
+    <strong>35. Konus hajmini toping.</strong>`,
+  options: [
+    String.raw`\(162\sqrt{3}\)`,
+    "108",
+    "32",
+    "81",
+    String.raw`\(81\sqrt{3}\)`,
+"27",
+"324"
+],
+image: null
+};
+
 // 12-SAVOL
 questions[11] = {
   text: String.raw`
@@ -370,7 +699,7 @@ $("question").innerHTML = q.text;
 
   if(current < MC_COUNT){
     $("options").innerHTML = q.options.map((option, index) => {
-      const letter = ["A","B","C","D"][index];
+     const letter = current >= 32 ? ["A","B","C","D","E","F"][index] : ["A","B","C","D"][index];
       const selected = answers[current] === letter ? "selected" : "";
       return `<button class="option ${selected}" data-answer="${letter}">${letter}) ${escapeHtml(option)}</button>`;
     }).join("");
