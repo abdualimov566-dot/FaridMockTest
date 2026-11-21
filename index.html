@@ -133,6 +133,28 @@ questions[0] = {
   options: ["897", "987", "999", "988"],
   image: null
 };
+questions[0] = {
+  text: "a, b, c — turli raqamlar bo‘lsa, 100a + 10b + c ning eng katta qiymatini toping.",
+  options: ["897", "987", "999", "988"],
+  image: null
+};
+
+// 2-SAVOL
+questions[1] = {
+  text: String.raw`<strong>Hisoblang:</strong><br><br>
+  \[
+  \left(2022-\frac{1}{2022}\right)
+  \div \frac{2021}{2022}
+  \cdot \frac{1}{2023}
+  \]`,
+  options: [
+    "1",
+    "2022",
+    String.raw`\(\frac{1}{2023}\)`,
+    "2023"
+  ],
+  image: null
+};
 
 // Rasmlar uchun misol:
 // questions[22].image = "savol_23.png"; // 23-savol
@@ -194,7 +216,7 @@ function startTimer(){
 function render(){
   const q = questions[current];
   $("counter").textContent = `${current+1} / ${TOTAL_QUESTIONS}`;
-  $("question").textContent = q.text;
+$("question").innerHTML = q.text;
 
   const img = $("questionImage");
   if(q.image){
