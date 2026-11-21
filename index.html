@@ -1,494 +1,310 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FARID MOCK TEST</title>
-
 <style>
+:root{--bg:#101010;--panel:#1b1b1b;--gold:#b99745;--gold2:#e5c36b;--muted:#aaa}
 *{box-sizing:border-box}
-
-body{
-margin:0;
-background:#101010;
-color:white;
-font-family:Arial;
-}
-
-header{
-padding:20px;
-background:#1b1b1b;
-border-bottom:2px solid #b99745;
-}
-
-h2{color:#d9b65b;margin:0}
-header p{color:#bbb}
-
-.container{
-max-width:1100px;
-margin:30px auto;
-padding:15px;
-}
-
-.panel{
-background:#1b1b1b;
-padding:22px;
-border-radius:12px;
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:14px;
-margin:12px 0;
-background:#292929;
-color:white;
-border:1px solid #b99745;
-border-radius:8px;
-font-size:16px;
-}
-
-button{
-cursor:pointer;
-border:0;
-border-radius:8px;
-padding:13px;
-background:#b99745;
-color:#111;
-font-weight:bold;
-letter-spacing:0 !important;
-word-spacing:0 !important;
-white-space:nowrap;
-}
-
-button:hover{opacity:.85}
-.hidden{display:none}
-
-.question{
-font-size:20px;
-margin:25px 0;
-}
-
-.option{
-display:block;
-width:100%;
-text-align:left;
-margin:10px 0;
-background:#292929;
-color:white;
-border:1px solid #555;
-}
-
-.option.selected{
-background:#806522;
-border-color:#e5c36b;
-color:white;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:8px;
-margin-top:15px;
-}
-
-.num{
-background:#292929;
-color:white;
-border:1px solid #555;
-}
-
-.num.done{background:#806522}
-
-.nav{
-display:flex;
-justify-content:space-between;
-gap:10px;
-margin-top:25px;
-}
-
+body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif}
+header{padding:20px;background:#1b1b1b;border-bottom:2px solid var(--gold)}
+h1,h2,h3{margin-top:0;color:var(--gold2)}
+header h1{font-size:24px;margin:0}
+header p{color:#bbb;margin-bottom:0}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}
+.panel{background:var(--panel);padding:22px;border:1px solid #343434;border-radius:12px;margin-bottom:18px}
+input{width:100%;padding:13px;margin:9px 0;background:#292929;color:#fff;border:1px solid var(--gold);border-radius:8px;font-size:16px}
+button{cursor:pointer;border:0;border-radius:8px;padding:12px 15px;background:var(--gold);color:#111;font-weight:bold}
+button:hover{filter:brightness(1.12)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.hidden{display:none!important}
+.gold{color:var(--gold2)}
+.question{font-size:20px;line-height:1.65;margin:22px 0;white-space:pre-wrap}
+.option{display:block;width:100%;text-align:left;margin:10px 0;background:#292929;color:#fff;border:1px solid #555;white-space:normal;line-height:1.5}
+.option.selected{background:#59471e;border:1px solid var(--gold2)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:15px}
+.num{background:#292929;color:#fff;border:1px solid #555}
+.num.done{background:#806522;color:#fff}
+.nav{display:flex;gap:10px;margin-top:22px}
 .nav button{flex:1}
-.gold{color:#d9b65b}
-
-@media(max-width:700px){
-.container{padding:10px}
-.panel{padding:15px}
-}
+#timer{color:var(--gold2);font-size:30px;font-weight:bold;text-align:center;padding:14px;background:#292929;border:2px solid var(--gold);border-radius:10px;margin:15px 0}
+#questionImage{display:none;max-width:100%;height:auto;margin:15px auto;border:1px solid var(--gold);border-radius:8px}
+.small{font-size:13px;color:var(--muted)}
+.result-score{font-size:28px;color:var(--gold2);font-weight:bold}
+@media(max-width:600px){.panel{padding:15px}.question{font-size:18px}.grid{grid-template-columns:repeat(5,1fr)}header h1{font-size:20px}}
 </style>
+<script>
+window.MathJax = {tex:{inlineMath:[['\\(','\\)'],['$','$']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-
 <body>
-
 <header>
-<h2>⭐ FARID MOCK TEST</h2>
-<p>MATEMATIKA | PREMIUM MOCK EXAM</p>
+  <h1>⭐ FARID MOCK TEST</h1>
+  <p>MATEMATIKA | PREMIUM MOCK EXAM</p>
 </header>
+<main class="container">
+  <section class="panel" id="login">
+    <h2>♛ TESTGA KIRISH</h2>
+    <p>Testni boshlash uchun maxsus kodni kiriting.</p>
+    <input id="accessCode" type="password" placeholder="Kirish kodini kiriting" autocomplete="off">
+    <button id="loginBtn" style="width:100%">TESTGA KIRISH →</button>
+    <p id="error" style="color:#ff7777"></p>
+  </section>
 
-<div class="container">
+  <section class="panel hidden" id="pdfSection">
+    <h2>📄 FARID OFFICIAL — MATEMATIKA TEST</h2>
+    <p>Test savollarini PDF shaklida ko‘ring:</p>
+    <iframe src="FARID%20OFFICIAL.pdf" title="Test PDF" width="100%" height="650" style="border:2px solid var(--gold);border-radius:10px"></iframe>
+    <button id="startBtn" style="width:100%;margin-top:15px">🚀 TESTNI BOSHLASH</button>
+  </section>
 
-<section class="panel" id="login">
-<h2>♛ TESTGA KIRISH</h2>
-<p>Testga kirish uchun maxsus kodni kiriting.</p>
+  <section id="exam" class="hidden">
+    <div class="panel">
+      <div class="gold">FARID MOCK TEST</div>
+      <p id="counter">1 / 45</p>
+      <div id="timer">02:30:00</div>
+      <div class="question" id="question"></div>
+      <img id="questionImage" alt="Savol chizmasi">
+      <div id="options"></div>
+      <div class="nav">
+        <button id="prevBtn">← Oldingi</button>
+        <button id="nextBtn">Keyingi →</button>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>📝 JAVOBLAR VARAQASI</h3>
+      <div class="grid" id="answerGrid"></div>
+      <p id="progress">Javoblar: 0 / 45</p>
+      <button id="finishBtn" style="width:100%">🏁 TESTNI YAKUNLASH</button>
+    </div>
+  </section>
 
-<input
-id="accessCode"
-type="password"
-placeholder="Kirish kodini kiriting">
-
-<button onclick="checkCode()" style="width:100%">
-TESTGA KIRISH →
-</button>
-
-<p id="error" style="color:#ff7777"></p>
-</section>
-
-<section class="panel hidden" id="pdfSection">
-
-<h2>📄 FARID OFFICIAL — MATEMATIKA TEST</h2>
-<p>Test savollarini PDF shaklida ko‘ring:</p>
-
-<iframe
-src="FARID%20OFFICIAL.pdf"
-width="100%"
-height="700px"
-style="border:2px solid #b99745;border-radius:10px;">
-</iframe>
-
-<button
-onclick="startExam()"
-style="width:100%;margin-top:15px;">
-🚀 TESTNI BOSHLASH
-</button>
-
-</section>
-
-<section id="exam" class="hidden">
-
-<div class="panel">
-
-<div class="gold">FARID MOCK TEST</div>
-
-<p id="counter">1 / 45</p>
-
-<div id="timer"
-style="color:#e5c36b;font-size:32px;font-weight:bold;text-align:center;padding:15px;background:#292929;border:2px solid #b99745;border-radius:10px;margin:15px 0;">
-02:30:00
-</div>
-
-<div class="question" id="question"></div>
-<img id="questionImage" style="display:none; max-width:100%; margin:15px auto;">
-<div id="options"></div>
-<div class="nav">
-<button onclick="move(-1)">← Oldingi</button>
-<button onclick="move(1)">Keyingi →</button>
-</div>
-
-</div>
-
-<div class="panel">
-
-<h3>📝 JAVOBLAR VARAQASI</h3>
-
-<div class="grid" id="answerGrid"></div>
-
-<p id="progress">Javoblar: 0 / 45</p>
-
-<button onclick="finish()" style="width:100%">
-🏁 TESTNI YAKUNLASH
-</button>
-
-</div>
-</section>
-
-<section id="result" class="panel hidden">
-
-<h2>🏆 TEST YAKUNLANDI!</h2>
-<p id="resultText"></p>
-
-<button onclick="location.reload()">
-QAYTA BOSHLASH
-</button>
-
-</section>
-
-</div>
+  <section id="result" class="panel hidden">
+    <h2>🏆 TEST YAKUNLANDI!</h2>
+    <p class="result-score" id="scoreText"></p>
+    <p id="resultText"></p>
+    <button id="restartBtn">QAYTA BOSHLASH</button>
+  </section>
+</main>
 
 <script>
-  
+// ===== SOZLAMALAR =====
 const ACCESS_CODE = "FARID2026";
-  
+const TOTAL_QUESTIONS = 45;
+const MC_COUNT = 35;
+const EXAM_SECONDS = 150 * 60;
 
+// 35 ta test savolining javob kaliti (A/B/C/D).
 const answerKey = [
-"B","A","A","A","B","D","A",
-"B","A","B","C","B","B","C",
-"A","A","C","A","A","C","D",
-"A","B","A","D","D","C","B",
-"C","A","B","B","A","B","C"
+  "B","A","A","A","B","D","A","B","A","B",
+  "C","B","B","C","A","A","C","A","A","C",
+  "D","A","B","A","D","D","C","B","C","A",
+  "B","B","A","B","C"
 ];
 
+// 36–45-savollar uchun (A va B bandlari).
 const writtenKey = [
-["6","13.5"],
-["π/6","3"],
-["-1","4.5"],
-["16","1"],
-["14","100/3"],
-["3√6/4","√6/2"],
-["12","25"],
-["7/25","7/4"],
-["3√2","54π"],
-["6","10%"]
+  ["6","13.5"],
+  ["π/6","3"],
+  ["-1","4.5"],
+  ["16","1"],
+  ["14","100/3"],
+  ["3√6/4","√6/2"],
+  ["12","25"],
+  ["7/25","7/4"],
+  ["3√2","54π"],
+  ["6","10%"]
 ];
 
-const questions = Array.from({length:45},(_,i)=>({
-    text:`${i+1}-savol.`,
-    image: ({
-        23: "Без имени.png",
-        31: "savol_2.png",
-        33: "savol_3.png",
-        34: "savol_3.png",
-        35: "savol_3.png",
-        38: "savol_4.png",
-        40: "savol_5.png",
-        41: "savol_6.png",
-        42: "savol_7.png",
-        43: "savol_8.png",
-        45: "savol_9.png"
-    })[i+1],
-    options: i < 35 ? ["A","B","C","D"] : [],
-    correct: i < 35 ? answerKey[i] : null,
-    correctA: i >= 35 ? writtenKey[i-35][0] : null,
-    correctB: i >= 35 ? writtenKey[i-35][1] : null
+// Savollar ro‘yxati. Matni hali kiritilmagan savollar uchun belgi qoldirilgan.
+// Savol matnini text qiymatiga, variantlarni options massiviga yozing.
+// Rasm fayllarini GitHub'dagi images papkasiga yuklang va image nomini kiriting.
+const questions = Array.from({length:TOTAL_QUESTIONS}, (_, i) => ({
+  text: `${i+1}-savol matni hali kiritilmagan.`,
+  options: i < MC_COUNT ? ["A varianti kiritiladi", "B varianti kiritiladi", "C varianti kiritiladi", "D varianti kiritiladi"] : [],
+  image: null
 }));
+
+// Rasmlar uchun misol:
+// questions[22].image = "savol_23.png"; // 23-savol
+// Fayl GitHub'dagi images papkasida bo‘lishi kerak.
 
 let current = 0;
 let answers = {};
-let timerInterval;
-let timeLeft = 150 * 60;
+let timerInterval = null;
+let timeLeft = EXAM_SECONDS;
 let timerStarted = false;
+let examFinished = false;
+
+const $ = id => document.getElementById(id);
+
+$("loginBtn").addEventListener("click", checkCode);
+$("accessCode").addEventListener("keydown", e => { if(e.key === "Enter") checkCode(); });
+$("startBtn").addEventListener("click", startExam);
+$("prevBtn").addEventListener("click", () => move(-1));
+$("nextBtn").addEventListener("click", () => move(1));
+$("finishBtn").addEventListener("click", () => finish(false));
+$("restartBtn").addEventListener("click", () => location.reload());
 
 function checkCode(){
-
-const code = document.getElementById("accessCode").value.trim();
-
-if(code === ACCESS_CODE){
-
-document.getElementById("login").classList.add("hidden");
-document.getElementById("pdfSection").classList.remove("hidden");
-
-}else{
-
-document.getElementById("error").textContent =
-"❌ Kod noto‘g‘ri. Qayta urinib ko‘ring.";
-
-}
-
+  if($("accessCode").value.trim() === ACCESS_CODE){
+    $("login").classList.add("hidden");
+    $("pdfSection").classList.remove("hidden");
+    $("error").textContent = "";
+  } else {
+    $("error").textContent = "❌ Kod noto‘g‘ri. Qayta urinib ko‘ring.";
+  }
 }
 
 function startExam(){
-
-document.getElementById("pdfSection").classList.add("hidden");
-document.getElementById("exam").classList.remove("hidden");
-
-render();
-
-if(!timerStarted){
-startTimer();
-timerStarted = true;
+  $("pdfSection").classList.add("hidden");
+  $("exam").classList.remove("hidden");
+  render();
+  if(!timerStarted){
+    timerStarted = true;
+    startTimer();
+  }
 }
 
+function updateTimer(){
+  const h = Math.floor(timeLeft / 3600);
+  const m = Math.floor((timeLeft % 3600) / 60);
+  const s = timeLeft % 60;
+  $("timer").textContent = [h,m,s].map(v => String(v).padStart(2,"0")).join(":");
 }
 
 function startTimer(){
-
-const timer = document.getElementById("timer");
-
-timerInterval = setInterval(()=>{
-
-timeLeft--;
-
-const hours = Math.floor(timeLeft / 3600);
-const minutes = Math.floor((timeLeft % 3600) / 60);
-const seconds = timeLeft % 60;
-
-timer.textContent =
-String(hours).padStart(2,"0")+":"+
-String(minutes).padStart(2,"0")+":"+
-String(seconds).padStart(2,"0");
-
-if(timeLeft <= 0){
-
-clearInterval(timerInterval);
-finish(true);
-
+  updateTimer();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    if(timeLeft <= 0) finish(true);
+  }, 1000);
 }
-
-},1000);
-
-}
-
 
 function render(){
+  const q = questions[current];
+  $("counter").textContent = `${current+1} / ${TOTAL_QUESTIONS}`;
+  $("question").textContent = q.text;
 
-document.getElementById("counter").textContent =
-(current+1)+" / "+questions.length;
-
-document.getElementById("question").textContent =
-questions[current].text;
-
-const img = document.getElementById("questionImage");
-
-if(questions[current].image){
-    img.src = "./images/" + encodeURIComponent(questions[current].image);
+  const img = $("questionImage");
+  if(q.image){
+    img.src = "./images/" + q.image;
     img.style.display = "block";
-}else{
+  } else {
+    img.removeAttribute("src");
     img.style.display = "none";
+  }
+
+  if(current < MC_COUNT){
+    $("options").innerHTML = q.options.map((option, index) => {
+      const letter = ["A","B","C","D"][index];
+      const selected = answers[current] === letter ? "selected" : "";
+      return `<button class="option ${selected}" data-answer="${letter}">${letter}) ${escapeHtml(option)}</button>`;
+    }).join("");
+    $("options").querySelectorAll("[data-answer]").forEach(btn => {
+      btn.addEventListener("click", () => choose(btn.dataset.answer));
+    });
+  } else {
+    const saved = answers[current] || {};
+    $("options").innerHTML = `
+      <label>A javob:</label>
+      <input id="writtenA" value="${escapeAttr(saved.A || "")}" placeholder="A javobni kiriting">
+      <label>B javob:</label>
+      <input id="writtenB" value="${escapeAttr(saved.B || "")}" placeholder="B javobni kiriting">
+    `;
+    $("writtenA").addEventListener("input", e => writeAnswer("A", e.target.value));
+    $("writtenB").addEventListener("input", e => writeAnswer("B", e.target.value));
+  }
+
+  $("answerGrid").innerHTML = questions.map((_, i) => {
+    const done = hasAnswer(i);
+    return `<button class="num ${done ? "done" : ""}" data-go="${i}">${i+1}${done ? " ✓" : ""}</button>`;
+  }).join("");
+  $("answerGrid").querySelectorAll("[data-go]").forEach(btn => {
+    btn.addEventListener("click", () => go(Number(btn.dataset.go)));
+  });
+
+  const count = Object.keys(answers).filter(k => hasAnswer(Number(k))).length;
+  $("progress").textContent = `Javob belgilangan savollar: ${count} / ${TOTAL_QUESTIONS}`;
+  $("prevBtn").disabled = current === 0;
+  $("nextBtn").disabled = current === TOTAL_QUESTIONS - 1;
+
+  if(window.MathJax && window.MathJax.typesetPromise){
+    MathJax.typesetPromise([$("question"), $("options")]).catch(()=>{});
+  }
 }
 
-const q = questions[current];
-
-if(current < 35){
-
-document.getElementById("options").innerHTML =
-q.options.map(x=>
-`<button class="option ${answers[current]===x?'selected':''}"
-onclick="choose('${x}')">${x}</button>`
-).join("");
-
-}else{
-
-document.getElementById("options").innerHTML = `
-<p>A javob:</p>
-<input value="${answers[current]?.A || ''}"
-oninput="writeAnswer('A',this.value)"
-placeholder="A javobni kiriting">
-
-<p>B javob:</p>
-<input value="${answers[current]?.B || ''}"
-oninput="writeAnswer('B',this.value)"
-placeholder="B javobni kiriting">
-`;
-
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
 }
+function escapeAttr(value){ return escapeHtml(value); }
 
-document.getElementById("answerGrid").innerHTML =
-questions.map((q,i)=>
-`<button class="num ${answers[i]?'done':''}"
-onclick="go(${i})">${i+1}${answers[i]?' ✓':''}</button>`
-).join("");
-
-document.getElementById("progress").textContent =
-"Javob belgilangan savollar: "+
-Object.keys(answers).length+" / "+questions.length;
-
+function hasAnswer(i){
+  const a = answers[i];
+  if(i < MC_COUNT) return typeof a === "string" && a.length > 0;
+  return !!(a && ((a.A || "").trim() || (a.B || "").trim()));
 }
-
-function writeAnswer(part,value){
-
-if(!answers[current]) answers[current] = {};
-
-answers[current][part] = value;
-
-document.getElementById("progress").textContent =
-"Javob belgilangan savollar: "+
-Object.keys(answers).length+" / "+questions.length;
-
+function choose(letter){
+  answers[current] = letter;
+  render();
 }
-
-
-function choose(x){
-
-answers[current] = x;
-render();
-
+function writeAnswer(part, value){
+  if(!answers[current] || typeof answers[current] !== "object") answers[current] = {};
+  answers[current][part] = value;
+  const count = Object.keys(answers).filter(k => hasAnswer(Number(k))).length;
+  $("progress").textContent = `Javob belgilangan savollar: ${count} / ${TOTAL_QUESTIONS}`;
 }
-
-function go(i){
-
-current = i;
-render();
-
+function go(i){ current = i; render(); }
+function move(delta){
+  current = Math.max(0, Math.min(TOTAL_QUESTIONS-1, current+delta));
+  render();
 }
-
-function move(d){
-
-current = Math.max(
-0,
-Math.min(questions.length-1,current+d)
-);
-
-render();
-
-}
-
-
 function normalizeAnswer(value){
-return String(value || "")
-.toLowerCase()
-.replace(/,/g,".")
-.replace(/\s+/g,"")
-.replace(/−/g,"-")
-.replace(/π/g,"pi");
+  return String(value || "")
+    .toLowerCase()
+    .replace(/,/g, ".")
+    .replace(/\s+/g, "")
+    .replace(/−/g, "-")
+    .replace(/π/g, "pi");
 }
+function finish(auto){
+  if(examFinished) return;
+  if(!auto && !confirm("Testni yakunlaysizmi?")) return;
+  examFinished = true;
+  clearInterval(timerInterval);
 
-function finish(auto=false){
+  let correct = 0;
+  let attempted = 0;
 
-if(!auto && !confirm("Testni yakunlaysizmi?")){
-return;
+  for(let i=0; i<MC_COUNT; i++){
+    if(hasAnswer(i)){
+      attempted++;
+      if(answers[i] === answerKey[i]) correct++;
+    }
+  }
+  for(let i=MC_COUNT; i<TOTAL_QUESTIONS; i++){
+    const user = answers[i] || {};
+    const key = writtenKey[i-MC_COUNT] || ["",""];
+    ["A","B"].forEach((part, j) => {
+      if((user[part] || "").trim() !== ""){
+        attempted++;
+        if(normalizeAnswer(user[part]) === normalizeAnswer(key[j])) correct++;
+      }
+    });
+  }
+
+  const maxScore = 55;
+  const percent = (correct / maxScore * 100).toFixed(1);
+  $("exam").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  $("scoreText").textContent = `${correct} / ${maxScore} ball`;
+  $("resultText").textContent =
+    `Foiz: ${percent}%. Kiritilgan javoblar: ${attempted}. ` +
+    (auto ? "Vaqt tugagani uchun test avtomatik yakunlandi." : "Test yakunlandi.");
 }
-
-clearInterval(timerInterval);
-
-let correct = 0;
-let attempted = 0;
-let maxScore = 55;
-
-for(let i=0;i<35;i++){
-
-if(answers[i]){
-attempted++;
-if(answers[i] === questions[i].correct){
-correct++;
-}
-}
-
-}
-
-for(let i=35;i<45;i++){
-
-const user = answers[i] || {};
-
-if(user.A && user.A.trim() !== ""){
-attempted++;
-if(normalizeAnswer(user.A) === normalizeAnswer(questions[i].correctA)){
-correct++;
-}
-}
-
-if(user.B && user.B.trim() !== ""){
-attempted++;
-if(normalizeAnswer(user.B) === normalizeAnswer(questions[i].correctB)){
-correct++;
-}
-}
-
-}
-
-const percent = (correct / maxScore * 100).toFixed(1);
-
-document.getElementById("exam").classList.add("hidden");
-document.getElementById("result").classList.remove("hidden");
-
-document.getElementById("resultText").textContent =
-"To‘g‘ri javoblar: " + correct +
-" / " + maxScore +
-". Foiz: " + percent + "%" +
-". Kiritilgan javoblar: " + attempted +
-". Test yakunlandi.";
-
-}
-
 </script>
-
 </body>
 </html>
